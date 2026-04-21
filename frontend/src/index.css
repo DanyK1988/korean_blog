@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  :lang(ko),
+  .font-ko {
+    font-family: "Noto Sans KR", "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-dark disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-paper;
+  }
+  .btn-outline {
+    @apply btn border border-gray-200 text-ink hover:border-accent hover:text-accent;
+  }
+  .input {
+    @apply w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm
+           focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20;
+  }
+  .card {
+    @apply rounded-card bg-white shadow-card;
+  }
+  .korean-word {
+    @apply cursor-pointer rounded px-0.5 transition;
+  }
+  .korean-word:hover {
+    @apply bg-accent-soft text-accent-dark;
+  }
+  .korean-word.saved {
+    @apply bg-accent-soft text-accent-dark;
+  }
+
+  /* --- Flashcard 3D flip --- */
+  .flip-wrap {
+    perspective: 1200px;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+  }
+  .flip-inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+  .flip-face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .flip-face-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+  }
+}
